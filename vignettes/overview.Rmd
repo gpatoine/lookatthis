@@ -1,0 +1,68 @@
+---
+title: "overview"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This package provides to functions for quick display specific data types.
+
+# Quick point map
+
+point_map() creates a leaflet map to view point data and can be filtered using the id parameter.
+
+
+```{r setup}
+library(lookatthis)
+
+```
+
+
+```{r}
+
+point_map(soil_data)
+
+```
+```{r}
+
+point_map(soil_data, ids = c(13300:13600))
+
+```
+
+
+# Plot SEM
+
+Create a figure from a model output from piecewiseSEM.
+
+```{r}
+
+library(piecewiseSEM)
+
+data <- decomposition_data
+
+pmod <- psem(
+  lm(decomposition ~ CN_ratio_litter + earthworm_abundance + detritivore_abundance, data),
+  lm(earthworm_abundance ~ CN_ratio_litter + functional_diversity + LAI_canopy , data),
+  lm(detritivore_abundance ~ CN_ratio_litter + functional_diversity + herb_cover + LAI_canopy, data),
+  lm(LAI_canopy ~ functional_diversity, data),
+  lm(herb_cover ~ LAI_canopy, data)
+)
+
+plot_psem(model = pmod)
+plot_psem(model = pmod, layout = "neato")
+dot_code <- plot_psem(model = pmod, render = F) %>% generate_dot()
+dot_code
+
+
+
+```
+
