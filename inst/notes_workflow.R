@@ -15,10 +15,7 @@ usethis::use_vignette(name = "overview")
 
 use_r("plot_lavaan")
 
-rlang::slu
-
 getAnywhere("slug")
-
 
 use_data_raw()
 
@@ -36,11 +33,13 @@ spell_check()
 build()
 tidy_dir("/R")
 source("https://install-github.me/MangoTheCat/goodpractice")
+remotes::install_github("MangoTheCat/goodpractice", force = TRUE)
 library(goodpractice)
-gp(getwd())
-
+gp()
 
 checkmate::assertString()
 
 use_testthat()
 use_test("plot_psem")
+
+

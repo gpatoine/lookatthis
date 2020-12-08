@@ -4,18 +4,22 @@
 \alias{point_map}
 \title{Map spatial point data}
 \usage{
-point_map(x, ids = NULL)
+point_map(x, ids = NULL, coords = NULL)
 }
 \arguments{
 \item{x}{dataframe with columns for latitude and longitude}
 
 \item{ids}{numeric ids to filter dataset}
+
+\item{coords}{character vector with column names for latitude and longitude.
+These will be guessed if not provided.}
 }
 \value{
 a leaflet map
 }
 \description{
-Creates an interactive map of the datapoints provided. Latitude and longitude columns are found automatically.
+Creates an interactive map of the datapoints provided. Latitude
+and longitude columns are found automatically.
 }
 \examples{
 point_map(soil_data, 10500:10575)

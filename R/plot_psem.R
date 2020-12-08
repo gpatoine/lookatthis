@@ -12,7 +12,8 @@
 #' @importFrom stringr str_detect
 #' @importFrom checkmate assert_class assert_choice assert_logical
 #' @importFrom piecewiseSEM coefs
-#' @importFrom DiagrammeR create_node_df create_edge_df create_graph render_graph add_global_graph_attrs delete_global_graph_attrs
+#' @importFrom DiagrammeR create_node_df create_edge_df create_graph render_graph
+#'   add_global_graph_attrs delete_global_graph_attrs
 plot_psem <- function(model, layout = "dot", render = TRUE){
 
   checkmate::assert_class(model, "psem")
@@ -21,13 +22,13 @@ plot_psem <- function(model, layout = "dot", render = TRUE){
 
 
   #function defaults for plotting
-  node_attrs = data.frame(shape = "rectangle", color = "black",
+  node_attrs <- data.frame(shape = "rectangle", color = "black",
                           fillcolor = "white")
-  edge_attrs = data.frame(style = "solid", color="black")
-  alpha=0.05
-  digits = 3
+  edge_attrs <- data.frame(style = "solid", color="black")
+  alpha <- 0.05
+  digits <- 3
 
-  # get variables for plot --------------------------------------------------------------------
+  # get variables for plot -------------------------------------------------------
 
   #get the coefficients table
   ctab <- coefs(model)
@@ -81,7 +82,8 @@ plot_psem <- function(model, layout = "dot", render = TRUE){
   #arrow thickness
   edges$penwidth <- 1
 
-  vals <- edges$label[edges$style == "solid"] %>% as.numeric %>% abs #for significant values
+  #for significant values
+  vals <- edges$label[edges$style == "solid"] %>% as.numeric %>% abs
   min_pen <- 1
   max_pen <- 8 #choose max line with
   penw <- (vals - min(vals)) * (max_pen - min_pen)/(max(vals) - min(vals)) + min_pen
@@ -114,7 +116,7 @@ plot_psem <- function(model, layout = "dot", render = TRUE){
                              value = "dot",
                              attr_type = "graph") %>%
       #add_global_graph_attrs("rankdir", "TB", "graph") %>% #left to right
-      #add_global_graph_attrs("ranksep", "2", "graph") %>% #bit more space horizontally
+      #add_global_graph_attrs("ranksep", "2", "graph") %>% #bit more space
       add_global_graph_attrs("fontsize", "16", "node") %>%
       add_global_graph_attrs("fontsize", "12", "edge") %>%
       delete_global_graph_attrs("len", "edge")
