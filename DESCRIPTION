@@ -21,9 +21,11 @@ Depends:
 Imports: 
     dplyr,
     leaflet,
-    stringr
+    stringr,
+    checkmate,
+    magrittr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
-    

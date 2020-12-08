@@ -7,44 +7,56 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 6.5
 )
-```
-
-This package provides to functions for quick display specific data types.
-
-# Quick point map
-
-point_map() creates a leaflet map to view point data and can be filtered using the id parameter.
 
 
-```{r setup}
-library(lookatthis)
+# 
+# output:
+#   md_document:
+#     variant: markdown_github
+# always_allow_html: true
+# 
 
 ```
+
+# lookatthis package
+
+This package provides two functions for quick display of specific data types.
+
+## 1. Interactive point map
+
+point_map() creates a leaflet map to view point data. Column with coordinate data is detected automatically.
 
 
 ```{r}
+suppressPackageStartupMessages(library(lookatthis))
 
+```
+
+The site numbers can be filtered using the ids argument.
+
+```{r, fig.width=6.5, fig.height=4.2, fig.align='center'}
 point_map(soil_data)
 
 ```
-```{r}
-
+```{r, fig.width=6.5, fig.height=4.2, fig.align='center'}
 point_map(soil_data, ids = c(13300:13600))
 
 ```
 
+\
 
-# Plot SEM
 
-Create a figure from a model output from piecewiseSEM.
+## 2. Plot SEM
 
-```{r}
+The package piecewiseSEM provides a method for Structural Equation Modeling. However, their plotting function is Create a figure from a model output from piecewiseSEM.
 
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 library(piecewiseSEM)
 
 data <- decomposition_data
@@ -57,12 +69,27 @@ pmod <- psem(
   lm(herb_cover ~ LAI_canopy, data)
 )
 
+summary(pmod)
+
+```
+
+While the summary provides valuable information, nothing beats a figure to get a quick glimpse of what is happening. Here black and red arrows represent positive and negative relationships respectively, with weighted width with the strength of the effect. Grey dashed line represent non-significant effects.
+
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 plot_psem(model = pmod)
+
+```
+
+Another layout is also available.
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 plot_psem(model = pmod, layout = "neato")
+
+```
+
+If additional tweaking is desired, you can export the DOT code directly.
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 dot_code <- plot_psem(model = pmod, render = F) %>% generate_dot()
-dot_code
-
-
+cat(dot_code)
 
 ```
 

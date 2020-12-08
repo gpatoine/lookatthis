@@ -20,6 +20,6 @@ A dataframe with 7 variables:
 decomposition_data
 }
 \description{
-Decomposition dataset in plots with differnt tree functional diversity and soil animal abundances.
+Decomposition dataset in plots with different tree functional diversity and soil animal abundances.
 }
 \keyword{datasets}

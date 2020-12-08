@@ -1,6 +1,6 @@
 #' soil_data
 #'
-#' Soil microbial stochiometry dataset
+#' Soil microbial stoichiometry dataset
 #'
 #' @format A dataframe with 10 variables:
 #' \describe{
@@ -18,7 +18,7 @@
 
 #' decomposition_data
 #'
-#' Decomposition dataset in plots with differnt tree functional diversity and soil animal abundances.
+#' Decomposition dataset in plots with different tree functional diversity and soil animal abundances.
 #'
 #' @format A dataframe with 7 variables:
 #' \describe{

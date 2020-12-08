@@ -19,6 +19,6 @@ A dataframe with 10 variables:
 soil_data
 }
 \description{
-Soil microbial stochiometry dataset
+Soil microbial stoichiometry dataset
 }
 \keyword{datasets}

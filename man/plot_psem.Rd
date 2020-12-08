@@ -14,12 +14,8 @@ plot_psem(model, layout = "dot", render = TRUE)
 \item{render}{if FALSE, only return object without viewing}
 }
 \value{
-a figure
+a figure or if render = FALSE, a character of the DOT code.
 }
 \description{
 Create a diagram of piecewiseSEM model
-}
-\examples{
-plot_psem(model)
-
 }

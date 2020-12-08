@@ -11,8 +11,10 @@
 #' @examples
 #' point_map(soil_data, 10500:10575)
 #'
-#' @importFrom dplyr filter rename
+#' @importFrom dplyr filter rename all_of
 point_map <- function(x, ids = NULL) {
+
+  checkmate::assert_data_frame(x)
 
   if (!is.null(ids)) {
     x <- x %>% dplyr::filter(id %in% ids)
@@ -38,3 +40,4 @@ point_map <- function(x, ids = NULL) {
     leaflet::addScaleBar(position = "topright")
 }
 
+id <- NULL

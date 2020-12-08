@@ -6,14 +6,19 @@
 #' @param layout layout type. "dot" or "neato"
 #' @param render if FALSE, only return object without viewing
 #'
-#' @return a figure
+#' @return a figure or if render = FALSE, a character of the DOT code.
 #' @export
 #'
-#' @examples
-#' plot_psem(model)
-#'
 #' @importFrom stringr str_detect
+#' @importFrom checkmate assert_class assert_choice assert_logical
+#' @importFrom piecewiseSEM coefs
+#' @importFrom DiagrammeR create_node_df create_edge_df create_graph render_graph add_global_graph_attrs delete_global_graph_attrs
 plot_psem <- function(model, layout = "dot", render = TRUE){
+
+  checkmate::assert_class(model, "psem")
+  checkmate::assert_choice(layout, c("dot", "neato"))
+  checkmate::assert_logical(render)
+
 
   #function defaults for plotting
   node_attrs = data.frame(shape = "rectangle", color = "black",
